@@ -1,0 +1,62 @@
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "watergrid-leak"
+version = "0.1.0"
+description = "IWA Non-Revenue Water (NRW) balance auditor, Infrastructure Leakage Index (ILI) calculator, Minimum Night Flow (MNF) burst detector, and pressure-drop DMA leak prioritizer."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+authors = [
+    { name = "Akandwanaho Ivan Alvin", email = "codesphereinnovationz@gmail.com" },
+]
+keywords = [
+    "water",
+    "non-revenue-water",
+    "iwa",
+    "leak-detection",
+    "hydraulics",
+    "municipal-utilities",
+    "climate-adaptation",
+    "sustainability",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=5.0.0",
+    "ruff>=0.8.0",
+    "mypy>=1.11.0",
+]
+
+[project.scripts]
+watergrid-leak = "watergrid_leak.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/codesphere-u/watergrid-leak"
+Repository = "https://github.com/codesphere-u/watergrid-leak"
+Issues = "https://github.com/codesphere-u/watergrid-leak/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/watergrid_leak"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+mypy_path = "src"
+packages = ["watergrid_leak"]
